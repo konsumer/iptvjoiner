@@ -15,6 +15,8 @@ Stream: http://IP:3000/stream.m3u
 XMLTV (EPG): http://IP:3000/xmltv.xml
 ```
 
+Manage your streams/epg at  `http://IP:3000/`
+
 ## docker
 
 You can run it in docker, like this:
