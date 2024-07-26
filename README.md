@@ -29,7 +29,7 @@ docker run -it --rm -p 3000:3000 -v ${PWD}/.db:/usr/src/db konsumer/iptvjoiner
 On windows, you might have to adjust like this (instead of using `-v`):
 
 ```
-docker run -it --rm -p 3000:3000 --mount type=bind,source=./.db,target=/usr/src/db konsumer/iptvjoiner
+docker run -it --rm -p 3000:3000 --mount type=bind,source=C:\iptvjoiner,target=/usr/src/db konsumer/iptvjoiner
 ```
 
 ### compose
