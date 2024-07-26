@@ -50,4 +50,4 @@ services:
 ## notes
 
 - I am using [these icons](https://icon-sets.iconify.design/carbon/)
-- I publish for every platform with `docker buildx build --platform=linux/amd64,linux/arm64,linux/arm/v7,linux/arm64 --tag=konsumer/iptvjoiner --push .`
+- I publish for every platform with `npm run build:docker`

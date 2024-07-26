@@ -18,7 +18,7 @@ VOLUME /usr/src/db
 
 # install deps
 COPY package*.json .
-RUN npm ci --include=dev
+RUN npm config set fund false && npm ci --include=dev
 
 # Copy the rest of the source files into the image.
 COPY . .
@@ -27,6 +27,6 @@ COPY . .
 RUN npm run build
 
 # get rid of dev-deps
-RUN npm prune --production
+RUN npm prune
 
 CMD ["npm", "run", "start:prod"]
