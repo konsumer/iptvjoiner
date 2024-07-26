@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev:frontend": "vite",
-    "start": "node src/dev.js",
+    "start": "node src/server/dev.js",
     "build": "vite build",
     "lint": "npx -y standard --fix"
   },
