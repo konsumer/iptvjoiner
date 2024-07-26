@@ -8,7 +8,7 @@
     "start": "nodemon src/server/dev.js",
     "start:prod": "node src/server/prod.js",
     "build": "vite build",
-    "build:docker": "docker buildx build --progress=plain --platform=linux/amd64,linux/arm64,linux/arm/v7,linux/arm64 --tag=konsumer/iptvjoiner --push .",
+    "build:docker": "docker buildx build --progress=plain --platform=linux/amd64,linux/arm64 --tag=konsumer/iptvjoiner --push .",
     "lint": "npx -y standard --fix"
   },
   "dependencies": {
