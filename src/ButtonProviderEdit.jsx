@@ -2,9 +2,9 @@ import { useRef, useState } from 'react'
 import cx from 'classnames'
 
 import IconEdit from './IconEdit'
-import IconError from './IconError.jsx'
+import IconError from './IconError'
 
-export default function ButtonProviderEdit({className, provider, onSuccess}) {
+export default function ButtonProviderEdit ({ className, provider, onSuccess }) {
   const r = useRef()
   const [error, errorSet] = useState()
   const [m3u, m3uSet] = useState(provider.m3u || '')
@@ -38,7 +38,7 @@ export default function ButtonProviderEdit({className, provider, onSuccess}) {
       m3uSet('')
       epgSet('')
       nameSet('')
-    } catch(e) {
+    } catch (e) {
       loadingSet(false)
       errorSet(e.message)
     }
@@ -52,38 +52,38 @@ export default function ButtonProviderEdit({className, provider, onSuccess}) {
           <h3 className='font-bold text-lg'>Edit Provider</h3>
 
           {error && (
-            <div role="alert" className="alert alert-error mb-2">
+            <div role='alert' className='alert alert-error mb-2'>
               <IconError />
               <span>{error}</span>
             </div>
           )}
 
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">Name</span>
+          <label className='form-control w-full'>
+            <div className='label'>
+              <span className='label-text'>Name</span>
             </div>
-            <input value={name} onChange={e => nameSet(e.target.value)} placeholder="Name of this provider" className="input input-bordered w-full" />
-          </label>
-          
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">M3U URL</span>
-            </div>
-            <input value={m3u} onChange={e => m3uSet(e.target.value)} placeholder="M3U URL" className="input input-bordered w-full" />
+            <input value={name} onChange={e => nameSet(e.target.value)} placeholder='Name of this provider' className='input input-bordered w-full' />
           </label>
 
-          <label className="form-control w-full mt-4">
-            <div className="label">
-              <span className="label-text">EPG URL</span>
+          <label className='form-control w-full'>
+            <div className='label'>
+              <span className='label-text'>M3U URL</span>
             </div>
-            <input value={epg} onChange={e => epgSet(e.target.value)} placeholder="XMLTV EPG URL" className="input input-bordered w-full" />
+            <input value={m3u} onChange={e => m3uSet(e.target.value)} placeholder='M3U URL' className='input input-bordered w-full' />
+          </label>
+
+          <label className='form-control w-full mt-4'>
+            <div className='label'>
+              <span className='label-text'>EPG URL</span>
+            </div>
+            <input value={epg} onChange={e => epgSet(e.target.value)} placeholder='XMLTV EPG URL' className='input input-bordered w-full' />
           </label>
 
           <div className='modal-action'>
             <form method='dialog' className='flex gap-2'>
               <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
               <button className='btn' onClick={() => errorSet()}>Cancel</button>
-              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className="loading loading-spinner"></span> : <IconEdit />} Save</button>
+              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <IconEdit />} Save</button>
             </form>
           </div>
         </div>

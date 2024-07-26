@@ -1,7 +1,8 @@
 import { useState } from 'react'
+
 import IconUpdate from './IconUpdate'
 
-export default function ButtonProviderUpdate({provider}) {
+export default function ButtonProviderUpdate ({ provider }) {
   const [loading, loadingSet] = useState()
 
   const doUpdate = async () => {
@@ -10,5 +11,5 @@ export default function ButtonProviderUpdate({provider}) {
     loadingSet(false)
   }
 
-  return <button onClick={doUpdate} className="btn btn-outline btn-ghost">{loading ? <span className="loading loading-spinner"></span> : <IconUpdate />} Update</button>
+  return <button onClick={doUpdate} className='btn btn-outline btn-ghost'>{loading ? <span className='loading loading-spinner' /> : <IconUpdate />} Update</button>
 }

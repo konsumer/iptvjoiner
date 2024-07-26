@@ -1,0 +1,15 @@
+**/.dockerignore
+**/.env
+**/.env.*
+**/.git
+**/.gitignore
+**/docker-compose*
+**/compose*
+**/Dockerfile*
+**/node_modules
+**/*.log
+**/.db
+**/.DS_Store
+dist
+LICENSE
+README.md

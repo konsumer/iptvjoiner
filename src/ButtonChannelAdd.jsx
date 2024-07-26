@@ -1,28 +1,31 @@
 import { useRef, useState } from 'react'
 import cx from 'classnames'
 
-import IconAdd from './IconAdd.jsx'
-import IconError from './IconError.jsx'
+import IconAdd from './IconAdd'
+import IconError from './IconError'
 
-export default function ButtonChannelAdd({className, onSuccess}) {
+export default function ButtonChannelAdd ({ className, onSuccess }) {
   const r = useRef()
   const [error, errorSet] = useState()
   const [loading, loadingSet] = useState()
 
   const handleSubmit = async e => {
     e.preventDefault()
+    loadingSet(true)
     errorSet()
+
+    loadingSet(false)
   }
 
   return (
     <>
-      <button className={cx('btn btn-outline btn-primary', className)} onClick={() => r.current.showModal()}><IconAdd/> New</button>
+      <button className={cx('btn btn-outline btn-primary', className)} onClick={() => r.current.showModal()}><IconAdd /> New</button>
       <dialog ref={r} className='modal'>
         <div className='modal-box'>
           <h3 className='font-bold text-lg'>Add New Channel</h3>
 
           {error && (
-            <div role="alert" className="alert alert-error mb-2">
+            <div role='alert' className='alert alert-error mb-2'>
               <IconError />
               <span>{error}</span>
             </div>
@@ -34,7 +37,7 @@ export default function ButtonChannelAdd({className, onSuccess}) {
             <form method='dialog' className='flex gap-2'>
               <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
               <button className='btn' onClick={() => errorSet()}>Cancel</button>
-              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className="loading loading-spinner"></span> : <IconAdd />} Add</button>
+              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <IconAdd />} Add</button>
             </form>
           </div>
         </div>

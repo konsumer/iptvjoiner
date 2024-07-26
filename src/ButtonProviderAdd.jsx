@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react'
 import cx from 'classnames'
 
-import IconAdd from './IconAdd.jsx'
-import IconError from './IconError.jsx'
+import IconAdd from './IconAdd'
+import IconError from './IconError'
 
-export default function ButtonProviderAdd({className, onSuccess}) {
+export default function ButtonProviderAdd ({ className, onSuccess }) {
   const r = useRef()
   const [error, errorSet] = useState()
   const [m3u, m3uSet] = useState('')
@@ -40,7 +40,7 @@ export default function ButtonProviderAdd({className, onSuccess}) {
       m3uSet('')
       epgSet('')
       nameSet('')
-    } catch(e) {
+    } catch (e) {
       errorSet(e.message)
       loadingSet(false)
     }
@@ -48,44 +48,44 @@ export default function ButtonProviderAdd({className, onSuccess}) {
 
   return (
     <>
-      <button className={cx('btn btn-outline btn-primary', className)} onClick={() => r.current.showModal()}><IconAdd/> New</button>
+      <button className={cx('btn btn-outline btn-primary', className)} onClick={() => r.current.showModal()}><IconAdd /> New</button>
       <dialog ref={r} className='modal'>
         <div className='modal-box'>
           <h3 className='font-bold text-lg'>Add New Provider</h3>
 
           {error && (
-            <div role="alert" className="alert alert-error mb-2">
+            <div role='alert' className='alert alert-error mb-2'>
               <IconError />
               <span>{error}</span>
             </div>
           )}
 
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">Name</span>
+          <label className='form-control w-full'>
+            <div className='label'>
+              <span className='label-text'>Name</span>
             </div>
-            <input value={name} onChange={e => nameSet(e.target.value)} placeholder="Name of this provider" className="input input-bordered w-full" />
-          </label>
-          
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">M3U URL</span>
-            </div>
-            <input value={m3u} onChange={e => m3uSet(e.target.value)} placeholder="M3U URL" className="input input-bordered w-full" />
+            <input value={name} onChange={e => nameSet(e.target.value)} placeholder='Name of this provider' className='input input-bordered w-full' />
           </label>
 
-          <label className="form-control w-full mt-4">
-            <div className="label">
-              <span className="label-text">EPG URL</span>
+          <label className='form-control w-full'>
+            <div className='label'>
+              <span className='label-text'>M3U URL</span>
             </div>
-            <input value={epg} onChange={e => epgSet(e.target.value)} placeholder="XMLTV EPG URL" className="input input-bordered w-full" />
+            <input value={m3u} onChange={e => m3uSet(e.target.value)} placeholder='M3U URL' className='input input-bordered w-full' />
+          </label>
+
+          <label className='form-control w-full mt-4'>
+            <div className='label'>
+              <span className='label-text'>EPG URL</span>
+            </div>
+            <input value={epg} onChange={e => epgSet(e.target.value)} placeholder='XMLTV EPG URL' className='input input-bordered w-full' />
           </label>
 
           <div className='modal-action'>
             <form method='dialog' className='flex gap-2'>
               <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
               <button className='btn' onClick={() => errorSet()}>Cancel</button>
-              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className="loading loading-spinner"></span> : <IconAdd />} Add</button>
+              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <IconAdd />} Add</button>
             </form>
           </div>
         </div>

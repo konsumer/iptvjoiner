@@ -10,6 +10,6 @@ export default {
   },
   plugins: [prose, daisyui],
   daisyui: {
-    logs: false,
-  },
+    logs: false
+  }
 }

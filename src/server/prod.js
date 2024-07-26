@@ -3,7 +3,7 @@ import 'dotenv/config'
 import express from 'express'
 import app from './app.js'
 
-const { PORT=3000 } = process.env
+const { PORT = 3000 } = process.env
 
 app.use(express.static('dist'))
 
