@@ -1,5 +1,10 @@
+// main backend service
+// TODO: add better errors to everything
+
 import express from 'express'
 import bodyParser from 'body-parser'
+import { parseM3U, writeM3U } from '@iptv/playlist'
+import parseEPG from 'iptv-playlist-parser'
 
 import db from './db.js'
 
@@ -10,7 +15,16 @@ const bodyJson = bodyParser.json()
 
 // update the channel-data & map
 async function updateProvider (id) {
-  // TODO
+  const provider = await db.get(`providers:${id}`)
+  if (!provider) {
+    throw new Error('Provider not found.')
+  }
+  const { channels } = parseM3U(await fetch(provider.m3u).then(r => r.text()))
+  const epg = {}
+  if (provider.epg) {
+    epg = parseEPG(await fetch(provider.epg).then(r => r.text()))
+    console.log(epg)
+  }
 }
 
 // stream playlist (mapped)

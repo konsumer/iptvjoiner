@@ -1,9 +1,6 @@
 import { useRef, useState } from 'react'
 import cx from 'classnames'
 
-import IconAdd from './IconAdd'
-import IconError from './IconError'
-
 export default function ButtonProviderAdd ({ className, onSuccess }) {
   const r = useRef()
   const [error, errorSet] = useState()
@@ -48,14 +45,14 @@ export default function ButtonProviderAdd ({ className, onSuccess }) {
 
   return (
     <>
-      <button className={cx('btn btn-outline btn-primary', className)} onClick={() => r.current.showModal()}><IconAdd /> New</button>
+      <button className={cx('btn btn-outline btn-primary', className)} onClick={() => r.current.showModal()}><span class='w-[24px] h-[24px] icon-[carbon--add-large]' /> New</button>
       <dialog ref={r} className='modal'>
         <div className='modal-box'>
           <h3 className='font-bold text-lg'>Add New Provider</h3>
 
           {error && (
             <div role='alert' className='alert alert-error mb-2'>
-              <IconError />
+              <span class='w-[24px] h-[24px] icon-[carbon--error-filled]' />
               <span>{error}</span>
             </div>
           )}
@@ -84,8 +81,8 @@ export default function ButtonProviderAdd ({ className, onSuccess }) {
           <div className='modal-action'>
             <form method='dialog' className='flex gap-2'>
               <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
-              <button className='btn' onClick={() => errorSet()}>Cancel</button>
-              <button className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <IconAdd />} Add</button>
+              <button className='btn' onClick={() => errorSet()}><span class='w-[24px] h-[24px] icon-[carbon--arrow-left]' /> Cancel</button>
+              <button disabled={loading} className='btn btn-primary' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <span class='w-[24px] h-[24px] icon-[carbon--add-large]' />} Add</button>
             </form>
           </div>
         </div>

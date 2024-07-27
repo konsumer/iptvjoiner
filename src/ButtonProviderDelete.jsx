@@ -1,8 +1,5 @@
 import { useRef, useState } from 'react'
 
-import IconDelete from './IconDelete'
-import IconError from './IconError'
-
 export default function ButtonProviderDelete ({ provider, onSuccess }) {
   const r = useRef()
   const [error, errorSet] = useState()
@@ -26,13 +23,13 @@ export default function ButtonProviderDelete ({ provider, onSuccess }) {
 
   return (
     <>
-      <button className='btn btn-outline btn-error' onClick={() => r.current.showModal()}><IconDelete /> Delete</button>
+      <button className='btn btn-outline btn-error' onClick={() => r.current.showModal()}><span class='w-[24px] h-[24px] icon-[carbon--delete]' /> Delete</button>
       <dialog ref={r} className='modal'>
         <div className='modal-box'>
 
           {error && (
             <div role='alert' className='alert alert-error mb-2'>
-              <IconError />
+              <span class='w-[24px] h-[24px] icon-[carbon--error-filled]' />
               <span>{error}</span>
             </div>
           )}
@@ -42,8 +39,8 @@ export default function ButtonProviderDelete ({ provider, onSuccess }) {
           <div className='modal-action'>
             <form method='dialog' className='flex gap-2'>
               <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
-              <button className='btn' onClick={() => errorSet()}>No</button>
-              <button className='btn btn-error' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <IconDelete />} Yes</button>
+              <button className='btn' onClick={() => errorSet()}><span class='w-[24px] h-[24px] icon-[carbon--arrow-left]' /> No</button>
+              <button disabled={loading} className='btn btn-error' onClick={handleSubmit}>{loading ? <span className='loading loading-spinner' /> : <span class='w-[24px] h-[24px] icon-[carbon--delete]' />} Yes</button>
             </form>
           </div>
         </div>
