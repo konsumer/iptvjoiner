@@ -3,8 +3,7 @@
 
 import express from 'express'
 import bodyParser from 'body-parser'
-import { parseM3U, writeM3U } from '@iptv/playlist'
-import parseEPG from 'iptv-playlist-parser'
+import { mergeIpTv, outputEPG, outputM3U } from './iptv.js'
 
 import db from './db.js'
 
@@ -19,22 +18,31 @@ async function updateProvider (id) {
   if (!provider) {
     throw new Error('Provider not found.')
   }
-  const { channels } = parseM3U(await fetch(provider.m3u).then(r => r.text()))
-  const epg = {}
-  if (provider.epg) {
-    epg = parseEPG(await fetch(provider.epg).then(r => r.text()))
-    console.log(epg)
-  }
+  const data = await mergeIpTv(provider.m3u, provider.epg)
+  await db.put('epg', data)
+  return data
 }
+
+// TODO: handle channelsToInclude on outputs
 
 // stream playlist (mapped)
 app.get('/stream.m3u', async (req, res) => {
-  // TODO
+  const data = await db.get('epg')
+  if (!data) {
+    throw new Error('Data not found.')
+  }
+  res.setHeader('content-type', 'audio/mpegurl')
+  res.send(outputM3U(data))
 })
 
 // EPG XMLTV (mapped)
 app.get('/xmltv.xml', async (req, res) => {
-  // TODO
+  const data = await db.get('epg')
+  if (!data) {
+    throw new Error('Data not found.')
+  }
+  res.setHeader('content-type', 'text/xml')
+  res.send(outputEPG(data))
 })
 
 // update a single provider

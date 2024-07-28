@@ -1,4 +1,6 @@
-This is a tool to merge & filter m3u & xmltv lists, for use with plex and other services that can only read shorter lists.
+This is a tool to merge & filter m3u & xmltv lists, and emulate a hdhomerun device for use with plex and other services that can only read shorter lists.
+
+You can kind of think of it like a simple & very fast [xTeVe](https://github.com/xteve-project/xTeVe) + [m3u4u](http://m3u4u.com/), combined. I used both of these together before i made it. [xTeVe](https://github.com/xteve-project/xTeVe) will turn m3u/epg into a fake HDHomeRun device (for plex) and you can use [m3u4u](http://m3u4u.com/) to manage your playlist and trim it down (because [xTeVe](https://github.com/xteve-project/xTeVe) can't handle really big lists.) With this service, you only need the one thing, and I like the UI better on mine than both of those. 
 
 
 ## local
@@ -53,3 +55,4 @@ services:
 
 - I am using [these icons](https://icon-sets.iconify.design/carbon/)
 - I publish for every platform with `npm run build:docker`
+- test streams & epg can be found [here](https://i.mjh.nz/), which I got from [iptv-org](https://github.com/iptv-org)

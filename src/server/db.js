@@ -1,5 +1,7 @@
 import { Level } from 'level'
 
+// TODO: switch to sublevel
+
 // get location, relative to top-level from env-var, default to .db/
 export const DATABASE_LOCATION = new URL(process.env.DATABASE_LOCATION || '.db/', import.meta.url + '/../../../').pathname
 
