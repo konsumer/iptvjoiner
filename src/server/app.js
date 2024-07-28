@@ -19,27 +19,29 @@ async function updateProvider (id) {
     throw new Error('Provider not found.')
   }
   const data = await mergeIpTv(provider.m3u, provider.epg)
-  await db.put('epg', data)
+  // TODO: this just clobbers epg, it should be merged
+  // TODO: epg should be broken down by channel in db, to handle larger lists
+  await db.put(`epg:${id}`, data)
   return data
 }
 
 // TODO: handle channelsToInclude on outputs
 
 // stream playlist (mapped)
-app.get('/stream.m3u', async (req, res) => {
-  const data = await db.get('epg')
+app.get('/:id/stream.m3u', async (req, res) => {
+  const data = await db.get(`epg:${req.params.id}`)
   if (!data) {
-    throw new Error('Data not found.')
+    throw new Error('Provider not found.')
   }
   res.setHeader('content-type', 'audio/mpegurl')
   res.send(outputM3U(data))
 })
 
 // EPG XMLTV (mapped)
-app.get('/xmltv.xml', async (req, res) => {
-  const data = await db.get('epg')
+app.get('/:id/xmltv.xml', async (req, res) => {
+  const data = await db.get(`epg:${req.params.id}`)
   if (!data) {
-    throw new Error('Data not found.')
+    throw new Error('Provider not found.')
   }
   res.setHeader('content-type', 'text/xml')
   res.send(outputEPG(data))

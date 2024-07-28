@@ -56,3 +56,10 @@ services:
 - I am using [these icons](https://icon-sets.iconify.design/carbon/)
 - I publish for every platform with `npm run build:docker`
 - test streams & epg can be found [here](https://i.mjh.nz/), which I got from [iptv-org](https://github.com/iptv-org)
+
+## todo
+
+- add actual homerun (shared port, and optional seperate ports for each provider)
+- put channels admin inside each provider (and allow merging them) so you can do per-channel epg/m3u/homerun and global
+- add info button for each provider
+- actually setup cheannels admin
